@@ -1,5 +1,5 @@
 
-import { Moul, Inter } from "next/font/google";
+import { Moul, Inter, Outfit } from "next/font/google";
 import Image from "next/image";
 
 import Frame from "@/../public/Frame.png"
@@ -17,7 +17,7 @@ const ptMoul = Moul({
     display: "swap",
   });
 
-  const ptInter = Inter({
+  const ptOutfit = Outfit({
     weight: ["700","400"],
     subsets: ["latin"],
     display: "swap",
@@ -26,17 +26,17 @@ const ptMoul = Moul({
 const AboutUs = () => {
     return(
 
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col cd d items-center justify-center py-4 overflow-hidden">
             <div className="about-title">
                 <div className="first-left-line"></div>
                 <div className="third-left-line"></div>
-                <h1 className={`${ptMoul.className} text-center text-[48px]`}>ABOUT US</h1>
+                <h1 className={`${ptMoul.className} text-center text-6xl`}>ABOUT US</h1>
                 <div className="first-right-line"></div>
                 <div className="third-right-line"></div>
             </div>
             <div className="py-10 text-center max-w-[940px]">
-                <h4 className={`text-2xl text-[rgba(55,57,60,1)] ${ptInter.className} font-[700]`}>We Don&apos;t Just Build, We Build to Scale.</h4>
-                <p className={`py-6 ${ptInter.className} font-[400] text-[rgba(55,57,60,1)] text-l`}>Snappy Tales works as your venture studio & growth engine, helping you launch, scale, and dominate your market with web & app development, branding, marketing, Business analytics, Market analysis, and GTM strategy — all under one roof.
+                <h4 className={`text-2xl text-[rgba(55,57,60,1)] ${ptOutfit.className} font-[700]`}>We Don&apos;t Just Build, We Build to Scale.</h4>
+                <p className={`py-6 ${ptOutfit.className} font-[400] text-[rgba(55,57,60,1)] text-xl`}>Snappy Tales works as your venture studio & growth engine, helping you launch, scale, and dominate your market with web & app development, branding, marketing, Business analytics, Market analysis, and GTM strategy — all under one roof.
                 </p>
             </div>
 
