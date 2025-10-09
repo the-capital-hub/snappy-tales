@@ -69,7 +69,7 @@ export default function Portfolio() {
       if (!races || !racesWrapper) return;
 
       function getScrollAmount() {
-  return races.scrollWidth - window.innerWidth;
+  return races!.scrollWidth - window.innerWidth;
 }
 
 const tween = gsap.to(races, {

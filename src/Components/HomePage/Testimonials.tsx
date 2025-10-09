@@ -23,32 +23,39 @@ const ptMoul = Moul({
   display: "swap",
 });
 
-const testimonials = [
+interface Testimonial {
+  name: string;
+  role: string;
+  text: string;
+}
+
+const testimonials: Testimonial[] = [
   {
     name: "Mike Torello",
     role: "CEO of Initech",
-    text: "I like getting the SMS & knowing the jobs done. I often refer to it, 'hope you get a ping today!' because my product",
+    text: "I like getting the SMS & knowing the job&#39;s done. I often refer to it as 'hope you get a ping today!' because my product.",
   },
   {
     name: "Richards Hawkins",
     role: "Marketing Manager of Upnow",
-    text: "We have successfully sold digital product and have happy with the results & look forward to using it again this.",
+    text: "We&#39;ve successfully sold digital products and are happy with the results. Looking forward to using it again soon.",
   },
   {
     name: "Thomas Magnum",
     role: "Barellon NSW",
-    text: "Design Monks offers producers a cost-effective selling tool. Having the ability to post prices that you want on an exchange visible.",
+    text: "Design Monks offers producers a cost-effective selling tool. Having the ability to post prices you want on an exchange is visible.",
   },
 ];
 
-const TestimonialCards = () => {
-  const [activeIndex, setActiveIndex] = useState(1); // default focused card
-  const cardsRef = useRef([]);
-  const lastSectionRef = useRef(null);
+const TestimonialCards: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number>(1);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lastSectionRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Animate testimonial cards with scrub
-    cardsRef.current.forEach((card, index) => {
+    // Animate testimonial cards
+    cardsRef.current.forEach((card) => {
+      if (!card) return;
       gsap.fromTo(
         card,
         { opacity: 0, y: 50 },
@@ -66,7 +73,7 @@ const TestimonialCards = () => {
       );
     });
 
-    // Animate final image/text section with scrub
+    // Animate final section
     if (lastSectionRef.current) {
       gsap.fromTo(
         lastSectionRef.current,
@@ -90,7 +97,13 @@ const TestimonialCards = () => {
     <div className="max-w-7xl mx-auto mt-20 px-4 min-h-screen">
       <div className="flex flex-col items-center justify-center mb-12">
         <div className="flex items-center bg-[rgba(249,250,251,1)] gap-2 border border-[rgba(234,236,240,1)] rounded-4xl py-2 px-4">
-          <Image src={fire} alt="fire" width={24} height={24} className="mr-2" />
+          <Image
+            src={fire}
+            alt="fire"
+            width={24}
+            height={24}
+            className="mr-2"
+          />
           <h3 className={`${ptPoppins.className} text-sm`}>TESTIMONIAL</h3>
         </div>
         <h1
@@ -106,14 +119,17 @@ const TestimonialCards = () => {
           return (
             <div
               key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
+              ref={(el) => {
+                cardsRef.current[index] = el;
+              }}
               onClick={() => setActiveIndex(index)}
-              className={`flex flex-col justify-between px-8 py-5 max-w-md rounded-2xl cursor-pointer transition-all duration-300
-                ${isActive ? "bg-black text-white" : "bg-white text-black shadow-md"}
-              `}
+              className={`flex flex-col justify-between px-8 py-5 max-w-md rounded-2xl cursor-pointer transition-all duration-300 ${
+                isActive
+                  ? "bg-black text-white"
+                  : "bg-white text-black shadow-md"
+              }`}
             >
               <div className="mb-15">
-                {/* SVG Placeholder */}
                 <svg
                   width="50"
                   height="50"
@@ -144,14 +160,14 @@ const TestimonialCards = () => {
                 </svg>
               </div>
 
-              <p className="text-sm mb-4">"{item.text}"</p>
+              <p className="text-sm mb-4">{item.text}</p>
 
-              <div className="flex gap-2 ">
+              <div className="flex gap-2 items-center">
                 <Image
                   src={img}
                   alt="user image"
-                  width={50}
-                  style={{ borderRadius: "100%", objectFit: "cover", height: "50px" }}
+                  width={40}
+                  className="object-cover [border-radius:100%] h-10"
                 />
                 <div className="flex flex-col">
                   <h4 className="font-semibold">{item.name}</h4>
@@ -167,8 +183,10 @@ const TestimonialCards = () => {
         ref={lastSectionRef}
         className="mx-auto flex flex-col justify-center items-center mt-10"
       >
-        <Image src={last} alt="Image" width={600} className="mb-20" />
-        <p className={`${ptMoul.className} text-6xl uppercase mb-10`}>
+        <Image src={last} alt="end image" width={600} className="mb-20" />
+        <p
+          className={`${ptMoul.className} text-6xl uppercase mb-10 text-center`}
+        >
           Save smart. Achieve more.
         </p>
       </div>

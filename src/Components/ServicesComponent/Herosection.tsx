@@ -18,7 +18,11 @@ const textContainerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Create master timeline
-      const masterTl = gsap.timeline();
+      const masterTl = gsap.timeline({
+      onComplete: () => {
+        window.dispatchEvent(new Event("heroAnimationComplete"));
+      },
+    })
 
       // S Box popup animation
       masterTl.from(sBoxRef.current, {
@@ -228,7 +232,7 @@ paths.forEach((path, index) => {
             Everything Your Startup Needs to Launch, Grow & Scale
           </h1>
           <p className="text-xl max-w-5xl text-center text-[#37393C]">
-            Snappy Tales isn't just an agency — we're your venture studio +
+            Snappy Tales isn&#39;t just an agency — we&#39;re your venture studio +
             growth partner. From tech to traction, we handle everything so you
             can focus on building your vision.
           </p>

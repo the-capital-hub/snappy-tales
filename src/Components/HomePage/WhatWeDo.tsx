@@ -123,7 +123,7 @@ const WhatWeDo = () => {
       });
 
       // Cards animations
-      cardsRef.current.forEach((card, index) => {
+      cardsRef.current.forEach((card) => {
         if (card) {
           // Card container animation
           gsap.from(card, {

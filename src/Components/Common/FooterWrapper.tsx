@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import Footer from "./Footer";
 
 export default function FooterWrapper() {
   const [showFooter, setShowFooter] = useState(false);
-  const footerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Listen for hero animation complete event
     const handleHeroComplete = () => {
       setShowFooter(true);
     };
 
+ 
     window.addEventListener("heroAnimationComplete", handleHeroComplete);
 
     return () => {
@@ -24,16 +24,20 @@ export default function FooterWrapper() {
   useEffect(() => {
     if (!showFooter || !footerRef.current) return;
 
-    // Animate footer in
     gsap.fromTo(
       footerRef.current,
       { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+      }
     );
   }, [showFooter]);
 
   return (
-    <div ref={footerRef}>
+    <div ref={footerRef} className="w-full">
       {showFooter && <Footer />}
     </div>
   );

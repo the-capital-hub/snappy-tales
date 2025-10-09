@@ -21,7 +21,7 @@ export default function Footer() {
   useEffect(() => {
     if (!footerRef.current) return;
 
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       // Animate footer wrapper
       gsap.fromTo(
         footerRef.current,
@@ -40,7 +40,7 @@ export default function Footer() {
       );
 
       // Animate inner sections individually
-      gsap.utils.toArray<HTMLElement>(".footer-section").forEach((el, i) => {
+      gsap.utils.toArray<HTMLElement>(".footer-section").forEach((el) => {
         gsap.fromTo(
           el,
           { opacity: 0, y: 50 },

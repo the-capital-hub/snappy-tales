@@ -1,5 +1,5 @@
 
-import { Moul, Inter, Outfit } from "next/font/google";
+import { Moul, Outfit } from "next/font/google";
 import Image from "next/image";
 
 import Frame from "@/../public/Frame.png"

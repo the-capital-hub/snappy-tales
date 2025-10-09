@@ -175,7 +175,7 @@ const Services: React.FC = () => {
       );
 
       // Animate list items sequentially
-      items.forEach((item, i) => {
+      items.forEach((item) => {
         gsap.fromTo(
           item,
           { opacity: 0, x: -30 },

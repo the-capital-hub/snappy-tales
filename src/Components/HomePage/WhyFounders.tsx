@@ -1,7 +1,7 @@
 "use client";
 import MiddleLogo from "@/svgs/Herosection/MiddleLogo";
 import { LongVector, Rhombus } from "@/svgs/Herosection/WhyfounderSvgs";
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useRef, useState } from "react";
 import { Moul, Outfit } from "next/font/google";
 import { Database, DollarSign, IdCardLanyard, Lock } from "lucide-react";
 import { gsap } from "gsap";
@@ -51,7 +51,7 @@ const options = [
 const WhyFounders = () => {
   const containerRef = useRef(null);
   const headingRef = useRef(null);
-  const optionsRef = useRef([]);
+  const optionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const circleRef = useRef(null);
   const textContentRef = useRef(null);
   const [activeOption, setActiveOption] = useState(0);
@@ -190,7 +190,9 @@ const WhyFounders = () => {
                 return (
                   <div
                     key={option.id}
-                    ref={(el) => (optionsRef.current[index] = el)}
+                    ref={(el) => {
+                      optionsRef.current[index] = el;
+                    }}
                     className={`px-6 py-5 text-4xl flex items-center gap-4 text-white relative cursor-pointer ${outfit.className}`}
                     style={{
                       borderRadius: "10px",

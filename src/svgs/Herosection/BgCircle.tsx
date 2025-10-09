@@ -16,7 +16,7 @@ const BgCircle = () => {
             rx="873.5"
             ry="874"
             fill="url(#paint0_linear_142_9950)"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
         </g>
         <g filter="url(#filter1_d_142_9950)">
@@ -26,7 +26,7 @@ const BgCircle = () => {
             rx="732.5"
             ry="733"
             fill="url(#paint1_linear_142_9950)"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
         </g>
         <g filter="url(#filter2_d_142_9950)">
@@ -36,7 +36,7 @@ const BgCircle = () => {
             rx="559.5"
             ry="560"
             fill="url(#paint2_linear_142_9950)"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
         </g>
         <g filter="url(#filter3_d_142_9950)">
@@ -45,7 +45,7 @@ const BgCircle = () => {
             cy="984"
             r="402"
             fill="url(#paint3_linear_142_9950)"
-            shape-rendering="crispEdges"
+            shapeRendering="crispEdges"
           />
         </g>
         <defs>
