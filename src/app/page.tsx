@@ -11,6 +11,8 @@ import Testimonials from "@/Components/HomePage/Testimonials";
 import Herosection from "@/Components/HomePage/Herosection";
 import WhatWeDo from "@/Components/HomePage/WhatWeDo";
 import WhyFounders from "@/Components/HomePage/WhyFounders";
+import { Portfolio } from "@/Components/HomePage/Portfolio";
+import { Steps } from "@/Components/HomePage/Steps";
 
 interface ScrollToFunction {
   (value: number | HTMLElement, options?: { 
@@ -141,6 +143,16 @@ export default function Home() {
               <AboutUs />
             </div>
 
+              <div
+              ref={(el) => {
+                sectionsRef.current[2] = el;
+              }}
+              className="relative z-10"
+            >
+              <Portfolio />
+            </div>
+
+
             <div
               ref={(el) => {
                 sectionsRef.current[3] = el;
@@ -162,6 +174,15 @@ export default function Home() {
             <div
               ref={(el) => {
                 sectionsRef.current[5] = el;
+              }}
+              className="relative z-10"
+            >
+              <Steps/>
+            </div>
+
+            <div
+              ref={(el) => {
+                sectionsRef.current[6] = el;
               }}
               className="relative z-10"
             >

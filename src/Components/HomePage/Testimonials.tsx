@@ -33,12 +33,12 @@ const testimonials: Testimonial[] = [
   {
     name: "Mike Torello",
     role: "CEO of Initech",
-    text: "I like getting the SMS & knowing the job&#39;s done. I often refer to it as 'hope you get a ping today!' because my product.",
+    text: "I like getting the SMS & knowing the job's done. I often refer to it as 'hope you get a ping today!' because my product.",
   },
   {
     name: "Richards Hawkins",
     role: "Marketing Manager of Upnow",
-    text: "We&#39;ve successfully sold digital products and are happy with the results. Looking forward to using it again soon.",
+    text: "We've successfully sold digital products and are happy with the results. Looking forward to using it again soon.",
   },
   {
     name: "Thomas Magnum",
