@@ -37,7 +37,7 @@ export default function FooterWrapper() {
   }, [showFooter]);
 
   return (
-    <div ref={footerRef} className="w-full">
+    <div ref={footerRef} className="w-full dark:bg-black bg-white">
       {showFooter && <Footer />}
     </div>
   );

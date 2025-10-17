@@ -13,6 +13,7 @@ import WhatWeDo from "@/Components/HomePage/WhatWeDo";
 import WhyFounders from "@/Components/HomePage/WhyFounders";
 import { Portfolio } from "@/Components/HomePage/Portfolio";
 import { Steps } from "@/Components/HomePage/Steps";
+import Footer from "@/Components/Common/Footer";
 
 interface ScrollToFunction {
   (value: number | HTMLElement, options?: { 
@@ -120,7 +121,7 @@ export default function Home() {
   }, [revealComplete]);
 
   return (
-    <PageRevealer onRevealComplete={() => setRevealComplete(true)}>
+    <PageRevealer onRevealComplete={() => setRevealComplete(true)} >
       {revealComplete && (
         <ReactLenis
           root
@@ -131,8 +132,8 @@ export default function Home() {
           }}
           onScroll={() => ScrollTrigger.update()}
         >
-          <div ref={contentRef} className="overflow-hidden">
-            <Herosection revealComplete={true} />
+          <div ref={contentRef} className="overflow-hidden min-hscreen dark:bg-black bg-white">
+            <Herosection  />
 
             <div
               ref={(el) => {
@@ -187,6 +188,14 @@ export default function Home() {
               className="relative z-10"
             >
               <Testimonials />
+            </div>
+            <div
+              ref={(el) => {
+                sectionsRef.current[7] = el;
+              }}
+              className="relative z-10"
+            >
+              <Footer/>
             </div>
           </div>
         </ReactLenis>

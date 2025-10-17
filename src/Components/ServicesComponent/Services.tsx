@@ -26,10 +26,7 @@ interface ServiceType {
 
 const Services: React.FC = () => {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
-  const [cursorPosition, setCursorPosition] = useState<{
-    x: number;
-    y: number;
-  }>({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const servicesRef = useRef<(HTMLDivElement | null)[]>([]);
   const logosRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -65,7 +62,7 @@ const Services: React.FC = () => {
       description:
         "More visibility, more engagement, more customers — powered by data-driven marketing.",
       items: [
-        "SEO, SEM, SEM",
+        "SEO, SEM, SMM",
         "Content & Inbound Marketing",
         "Performance Marketing (Meta, Google, LinkedIn Ads)",
         "Growth Campaigns that Convert",
@@ -104,8 +101,6 @@ const Services: React.FC = () => {
   };
 
   const handleMouseLeave = () => setHoveredService(null);
-  const handleServiceClick = (serviceId: number) =>
-    console.log(`Service ${serviceId} clicked`);
 
   useEffect(() => {
     servicesRef.current.forEach((el) => {
@@ -116,7 +111,6 @@ const Services: React.FC = () => {
       const items = el.querySelectorAll<HTMLDivElement>(".service-item");
       if (!icon || !title || !description) return;
 
-      // Animate icon
       gsap.fromTo(
         icon,
         { opacity: 0, x: -30, scale: 0.8 },
@@ -136,7 +130,6 @@ const Services: React.FC = () => {
         }
       );
 
-      // Animate title
       gsap.fromTo(
         title,
         { opacity: 0, x: -50 },
@@ -155,7 +148,6 @@ const Services: React.FC = () => {
         }
       );
 
-      // Animate description
       gsap.fromTo(
         description,
         { opacity: 0, x: -50 },
@@ -174,7 +166,6 @@ const Services: React.FC = () => {
         }
       );
 
-      // Animate list items sequentially
       items.forEach((item) => {
         gsap.fromTo(
           item,
@@ -196,7 +187,6 @@ const Services: React.FC = () => {
       });
     });
 
-    // Logos animation - smooth and quick
     logosRef.current.forEach((el) => {
       if (!el) return;
       gsap.fromTo(
@@ -219,7 +209,6 @@ const Services: React.FC = () => {
       );
     });
 
-    // Headline animation
     if (headlineRef.current) {
       gsap.fromTo(
         headlineRef.current,
@@ -242,33 +231,36 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <div className={`${mont.className} min-h-screen bg-gray-50 p-8`}>
-      <div className="max-w-6xl space-y-6 mx-auto">
+    <div
+      className={`${mont.className} min-h-screen bg-gray-50 dark:bg-black transition-colors duration-300 p-6 md:p-12`}
+    >
+      <div className="max-w-6xl mx-auto space-y-6">
         {services.map((service, index) => (
           <div
             key={service.id}
             ref={(el) => {
               servicesRef.current[index] = el;
             }}
-            className="relative rounded-2xl p-8 transition-shadow cursor-pointer"
+            className="relative rounded-2xl p-6 md:p-8 transition-all duration-300 cursor-pointer md:shadow-none shadow-sm hover:shadow-md"
             onMouseMove={(e) => handleMouseMove(e, service.id)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => handleServiceClick(service.id)}
           >
-            <div className="flex items-center justify-center gap-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
               <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-b from-[#FFDE48] to-[#F4C906] rounded-full flex items-center justify-center service-icon">
-                <Smartphone className="w-6 h-6 text-gray-900" />
+                <Smartphone className="w-6 h-6 text-gray-900 dark:text-black" />
               </div>
               <div className="flex-1">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {service.title}
                 </h2>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <div className="flex max-w-4xl flex-wrap gap-3">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm md:text-base">
+                  {service.description}
+                </p>
+                <div className="flex flex-wrap gap-2 md:gap-3">
                   {service.items.map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 service-item"
+                      className="flex items-center gap-2 service-item text-sm md:text-base"
                     >
                       <svg
                         width="14"
@@ -283,20 +275,19 @@ const Services: React.FC = () => {
                           fill="#F4C906"
                         />
                       </svg>
-                      <span className="text-sm text-gray-700">{item}</span>
+                      <span className="dark:text-gray-300">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Floating Arrow Button */}
             {hoveredService === service.id && (
               <div
-                className="absolute w-12 h-12 bg-gradient-to-b from-[#FFDE48] to-[#F4C906] rounded-full flex items-center justify-center pointer-events-none transition-opacity duration-200"
+                className="absolute w-10 h-10 md:w-12 md:h-12 bg-gradient-to-b from-[#FFDE48] to-[#F4C906] rounded-full flex items-center justify-center pointer-events-none transition-opacity duration-200"
                 style={{
-                  left: `${cursorPosition.x - 24}px`,
-                  top: `${cursorPosition.y - 24}px`,
+                  left: `${cursorPosition.x - 20}px`,
+                  top: `${cursorPosition.y - 20}px`,
                 }}
               >
                 <svg
@@ -319,70 +310,57 @@ const Services: React.FC = () => {
       </div>
 
       {/* Logos + MiddleLogo */}
-      <div className="flex justify-center items-center py-3 max-w-6xl mx-auto gap-8">
-        <div className="flex justify-between items-center gap-5">
-          <div
-            ref={(el) => {
-              logosRef.current[0] = el;
-            }}
-            className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-6.5"
-          >
-            <Image
-              src={orange}
-              alt="s logo in orange color"
-              width={150}
-              className="rounded-full"
-            />
-          </div>
-          <div
-            ref={(el) => {
-              logosRef.current[1] = el;
-            }}
-            className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-4"
-          >
-            <Image src={react} alt="react logo" width={150} />
-          </div>
+      <div className="flex flex-col md:flex-row justify-center items-center py-6 md:py-12 max-w-6xl mx-auto gap-6 md:gap-12">
+        <div className="flex gap-5 flex-wrap md:flex-nowrap justify-center">
+          {[orange, react].map((logo, i) => (
+            <div
+              key={i}
+              ref={(el) => {logosRef.current[i] = el}}
+              className="bg-[#D5D5D51A] dark:bg-[#ffffff0d] shadow-inner rounded-2xl p-4 md:p-6"
+            >
+              <Image src={logo} alt={`logo-${i}`} width={120} />
+            </div>
+          ))}
         </div>
 
-        <div className="mx-auto">
+        <div className="mx-auto my-6 md:my-0">
           <MiddleLogo />
         </div>
 
-        <div className="flex justify-between items-center gap-5">
-          <div
-            ref={(el) => {
-              logosRef.current[2] = el;
-            }}
-            className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-4"
-          >
-            <Image src={figma} alt="figma logo" width={150} />
-          </div>
-          <div
-            ref={(el) => {
-              logosRef.current[3] = el;
-            }}
-            className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-3 rotate-180"
-          >
-            <Image src={mac} alt="mac logo" width={150} />
-          </div>
+        <div className="flex gap-5 flex-wrap md:flex-nowrap justify-center">
+          {[figma, mac].map((logo, i) => (
+            <div
+              key={i}
+              ref={(el) => {logosRef.current[i + 2] = el}}
+              className={`bg-[#D5D5D51A] dark:bg-[#ffffff0d] shadow-inner rounded-2xl p-3 md:p-4 ${
+                logo === mac ? "rotate-180" : ""
+              }`}
+            >
+              <Image src={logo} alt={`logo-${i + 2}`} width={120} />
+            </div>
+          ))}
         </div>
       </div>
-        <div className="flex flex-col items-center  gap-4 text-center ">
-          <span className="text-5xl font-bold">Why Founders<br/> Choose Snappy Tales</span>
-          <p className="text-2xl">
-            One Partner, All Solutions – Tech, design, marketing, funding — no
-            juggling agencies.
-          </p>
-           <p className="text-2xl">
-            Speed + Quality – We execute fast without compromising results.
-          </p>
-          <Button>Request a demo</Button>
-        </div>
+
+      {/* Founder Text */}
+      <div className="flex flex-col items-center gap-4 md:gap-6 text-center max-w-3xl mx-auto mb-12">
+        <span className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">
+          Why Founders <br /> Choose Snappy Tales
+        </span>
+        <p className="text-lg md:text-2xl text-gray-700 dark:text-gray-300">
+          One Partner, All Solutions – Tech, design, marketing, funding — no
+          juggling agencies.
+        </p>
+        <p className="text-lg md:text-2xl text-gray-700 dark:text-gray-300">
+          Speed + Quality – We execute fast without compromising results.
+        </p>
+        <Button>Request a demo</Button>
+      </div>
 
       {/* Headline */}
       <div
         ref={headlineRef}
-        className={`${inter.className} text-8xl mx-auto font-bold text-center my-15`}
+        className={`${inter.className} text-5xl md:text-8xl font-bold text-center my-12 md:my-16 text-gray-900 dark:text-white`}
       >
         Save smart. Achieve more.
       </div>

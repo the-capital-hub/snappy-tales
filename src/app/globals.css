@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -39,8 +40,7 @@ body {
   gap: 4rem; /* spacing between logos */
   animation: scroll-left 30s linear infinite;
 }
-
-
+/* Light mode default */
 .btn-cls {
   color: black;
   background: repeating-linear-gradient(
@@ -56,14 +56,27 @@ body {
   padding: 6px 14px;
   border-radius: 170px;
   font-size: 16px;
+  cursor: pointer;
   font-weight: bold;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 /* hover/active states */
 .btn-cls:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px rgba(0, 0, 0, 0.8);
 }
+
+/* Dark mode using class strategy */
+.dark .btn-cls {
+  box-shadow: 0 4px #ffffff;
+}
+
+.dark .btn-cls:hover {
+  box-shadow: 0 6px #ffffff;
+}
+
+
 
 .btn-cls:active {
   transform: translateY(2px);

@@ -1,195 +1,144 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import BgCircle from "@/svgs/Herosection/BgCircle";
+
+import HeroLogo from "@/svgs/Herosection/HeroLogo";
+import HeroSectionHuman from "@/svgs/Herosection/HeroSectionHuman";
 import Smiley from "@/svgs/Herosection/Smiley";
-import Love from "@/svgs/Herosection/Love";
-import Hand from "@/svgs/Herosection/Hand";
-import MiddleLogo from "@/svgs/Herosection/MiddleLogo";
-import orange from "../../../public/s-icon.png";
-import react from "../../../public/react-icon.png";
-import figma from "../../../public/figma.png";
-import mac from "../../../public/mac-icon.png";
-import Image from "next/image";
-import { Montserrat, Moul, Outfit } from "next/font/google";
+import React, { useEffect, useRef } from "react";
 import Button from "../ui/Button";
+import Scribble from "@/svgs/Herosection/Scribble";
+import Rectangle from "@/svgs/Herosection/Rectangle";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Inter, Moul } from "next/font/google";
+import Website from "@/svgs/Herosection/Website";
 
-const outfit = Outfit({ weight: ["400", "700"], subsets: ["latin"], display: "swap" });
-const mont = Montserrat({ weight: ["700"], subsets: ["latin"] });
+gsap.registerPlugin(ScrollTrigger);
 const moul = Moul({ weight: ["400"], subsets: ["latin"] });
+const inter = Inter({ weight: ["400"], subsets: ["latin"] });
 
-interface HeroSectionProps {
-  revealComplete: boolean;
-}
-
-const HeroSection: React.FC<HeroSectionProps> = ({ revealComplete }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const pillRef = useRef<HTMLDivElement | null>(null);
-  const heading1Ref = useRef<HTMLHeadingElement | null>(null);
-  const heading2Ref = useRef<HTMLHeadingElement | null>(null);
-  const descRef = useRef<HTMLDivElement | null>(null);
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const handRef = useRef<HTMLDivElement | null>(null);
-  const smileyRef = useRef<HTMLDivElement | null>(null);
-  const loveRef = useRef<HTMLDivElement | null>(null);
-  const logo1Ref = useRef<HTMLDivElement | null>(null);
-  const logo2Ref = useRef<HTMLDivElement | null>(null);
-  const middleLogoRef = useRef<HTMLDivElement | null>(null);
-  const logo3Ref = useRef<HTMLDivElement | null>(null);
-  const logo4Ref = useRef<HTMLDivElement | null>(null);
+const Herosection = () => {
+  const containerRef = useRef(null);
+  const humanRef = useRef(null);
+  const logoRef = useRef(null);
+  const textRef = useRef(null);
+  const buttonRef = useRef(null);
+  const rectangleLeftRef = useRef(null);
+  const rectangleRightRef = useRef(null);
+  const scribbleRef = useRef(null);
 
   useEffect(() => {
-    if (!revealComplete) return;
+    const ctx = gsap.context(() => {
+      // Animate hero elements immediately on page load
+      gsap.set([humanRef.current, logoRef.current, textRef.current, scribbleRef.current, buttonRef.current], { opacity: 0 });
 
-    gsap.to(containerRef.current, { opacity: 1, duration: 0.01 });
+      gsap.to(humanRef.current, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" });
+      gsap.to(logoRef.current, { scale: 1, rotation: 0, opacity: 1, duration: 1, ease: "back.out(1.7)" });
+      gsap.to(textRef.current, { y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.2 });
+      gsap.to(scribbleRef.current, { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)", delay: 0.4 });
+      gsap.to(buttonRef.current, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)", delay: 0.6 });
 
-    const elements = [
-      pillRef.current,
-      heading1Ref.current,
-      heading2Ref.current,
-      descRef.current,
-      buttonRef.current,
-      handRef.current,
-      smileyRef.current,
-      loveRef.current,
-      logo1Ref.current,
-      logo2Ref.current,
-      middleLogoRef.current,
-      logo3Ref.current,
-      logo4Ref.current,
-    ].filter(Boolean);
+      // Parallax effect for rectangles (scroll-based)
+      gsap.to(rectangleLeftRef.current, {
+        y: -80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
 
-    // Initial state
-    gsap.set(elements, { opacity: 0, y: 5, scale: 0 });
+      gsap.to(rectangleRightRef.current, {
+        y: 80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    }, containerRef);
 
-    const tl = gsap.timeline({
-      defaults: { ease: "back.out(1)", duration: 0.8 },
-      onComplete: () => {
-        // ✅ Tell the FooterWrapper inside layout to show footer
-        window.dispatchEvent(new Event("heroAnimationComplete"));
-      },
-    });
-
-    // Hero content animations
-    tl.to(pillRef.current, { opacity: 1, y: 0, scale: 1 })
-      .to(heading1Ref.current, { opacity: 1, y: 0, scale: 1 }, "-=0.4")
-      .to(smileyRef.current, { opacity: 1, y: 0, scale: 1, rotation: 360, duration: 0.8 }, "-=0.5")
-      .to(heading2Ref.current, { opacity: 1, y: 0, scale: 1 }, "-=0.5")
-      .to(loveRef.current, { opacity: 1, y: 0, scale: 1, rotation: 360, duration: 0.8 }, "-=0.5")
-      .to(descRef.current, { opacity: 1, y: 0, scale: 1 }, "-=0.5")
-      .to(buttonRef.current, { opacity: 1, y: 0, scale: 1 }, "-=0.5")
-      .to(handRef.current, { opacity: 1, y: 0, scale: 1, rotation: 15 }, "-=0.5")
-      // Logos
-      .to([logo1Ref.current, logo2Ref.current], { opacity: 1, scale: 1, y: 0, stagger: 0.1 }, "-=0.5")
-      .to(middleLogoRef.current, { opacity: 1, scale: 1, y: 0, duration: 0.8 }, "-=0.5")
-      .to([logo3Ref.current, logo4Ref.current], { opacity: 1, scale: 1, y: 0, stagger: 0.1 }, "-=0.6");
-
-    // Floating animations
-    gsap.to(handRef.current, {
-      y: -2,
-      repeat: -1,
-      yoyo: true,
-      duration: 0.8,
-      ease: "power1.inOut",
-      delay: 1.5,
-    });
-    gsap.to([smileyRef.current, loveRef.current], {
-      y: -2,
-      repeat: -1,
-      yoyo: true,
-      duration: 1.5,
-      ease: "power1.inOut",
-      stagger: 0.3,
-      delay: 2,
-    });
-  }, [revealComplete]);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen w-full px-5 mx-auto text-center opacity-0"
+      className="relative w-full flex flex-col items-center justify-center px-6 py-20 bg-white dark:bg-black transition-colors my-5 duration-300"
     >
-      {/* Background Circle */}
-      <div className="absolute inset-0 flex items-center justify-center z-[-1]">
-        <BgCircle />
-      </div>
-
-      {/* Hero Content */}
-      <div className="relative max-w-7xl mx-auto z-10 flex flex-col items-center justify-center py-8">
-        <div
-          ref={pillRef}
-          className={`bg-white border mx-auto border-[#F4C90659] px-8 py-2 rounded-full text-sm text-black ${outfit.className}`}
-        >
-          Best Services For You....!
-        </div>
-
-        <div className="uppercase mt-6">
-          <h1
-            ref={heading1Ref}
-            className={`text-5xl md:text-7xl ${mont.className} font-bold text-black leading-tight`}
-          >
-            Your All-in-
-            <span
-              ref={smileyRef}
-              className="inline-flex relative bottom-2 left-1 items-center"
-            >
-              <Smiley className="w-14 h-14 inline-block" />
-            </span>
-            ne
-          </h1>
-          <h1
-            ref={heading2Ref}
-            className={`text-5xl text-black md:text-7xl mt-2 ${moul.className} font-bold leading-tight`}
-          >
-            Gr
-            <span
-              ref={loveRef}
-              className="inline-flex relative bottom-2 items-center"
-            >
-              <Love className="w-14 h-14 inline-block" />
-            </span>
-            wth Partner
-          </h1>
-        </div>
-
-        <div
-          ref={descRef}
-          className="mt-6 mb-8 max-w-4xl mx-auto text-[#565656]"
-        >
-          At Snappy Tales, we&apos;re not just a service provider — we are a venture studio.
-          From website & app development to branding, UI/UX, marketing, GTM strategy, and accelerator support, we give startups everything they need to launch faster, grow stronger, and scale bigger.
-        </div>
-
-        <div ref={buttonRef}>
-          <Button>Request a Demo</Button>
-        </div>
-
-        <div ref={handRef} className="absolute top-10/11 right-1/3">
-          <Hand />
+      {/* Background Rectangles */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="flex gap-7">
+          <div ref={rectangleLeftRef}>
+            <Rectangle />
+          </div>
+          <div ref={rectangleRightRef} className="-mt-18">
+            <Rectangle />
+          </div>
         </div>
       </div>
 
-      {/* Logos Section */}
-      <div className="flex justify-center items-center py-3 max-w-6xl mx-auto">
-        <div className="flex justify-between items-center gap-5">
-          <div ref={logo1Ref} className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-6.5">
-            <Image src={orange} alt="s logo" width={150} className="rounded-full" />
-          </div>
-          <div ref={logo2Ref} className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-4">
-            <Image src={react} alt="react logo" width={150} />
-          </div>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-0 w-full max-w-7xl">
+        {/* Left Side */}
+        <div
+          ref={humanRef}
+          className="flex w-full lg:w-1/4 mt-12 lg:mt-0 relative bottom-26"
+        >
+          <HeroSectionHuman />
         </div>
 
-        <div ref={middleLogoRef} className="mx-auto">
-          <MiddleLogo />
-        </div>
-
-        <div className="flex justify-between items-center gap-5">
-          <div ref={logo3Ref} className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-4">
-            <Image src={figma} alt="figma logo" width={150} />
+        {/* Right Side */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left relative right-1/5 top-0 space-y-0">
+          {/* Logo */}
+          <div
+            ref={logoRef}
+            className="mx-auto relative left-[14rem] top-0 lg:mx-0"
+          >
+            <HeroLogo />
           </div>
-          <div ref={logo4Ref} className="bg-[#D5D5D51A] shadow-inner rounded-2xl p-3 rotate-180">
-            <Image src={mac} alt="mac logo" width={150} />
+
+          {/* Heading */}
+          <div ref={textRef} className="relative space-y-2">
+            <h1
+              className={`${moul.className} uppercase text-4xl md:text-6xl lg:text-7xl font-bold text-black dark:text-white leading-relaxed`}
+            >
+              YOUR GROWTH.
+              <br />
+              <span className="flex items-center">
+                <Smiley />
+                <span>UR MISSION.</span>
+              </span>
+            </h1>
+
+            {/* Scribble */}
+            <div
+              ref={scribbleRef}
+              className="absolute bottom-35 left-1/2 -translate-x-1/2 lg:left-[35rem] lg:translate-x-0"
+            >
+              <Scribble />
+            </div>
+
+            <div className="absolute left-full bottom-8">
+              <Website />
+            </div>
+          </div>
+
+          {/* Paragraph */}
+          <p
+            className={`${inter.className} text-gray-700 text-center dark:text-white text-base md:text-2xl`}
+          >
+            We craft brands, build experiences, and run marketing
+            <br />
+            that delivers measurable results.
+          </p>
+
+          {/* Button */}
+          <div ref={buttonRef} className="relative top-8 left-[13.5rem]">
+            <Button>Request a Demo</Button>
           </div>
         </div>
       </div>
@@ -197,4 +146,4 @@ const HeroSection: React.FC<HeroSectionProps> = ({ revealComplete }) => {
   );
 };
 
-export default HeroSection;
+export default Herosection;

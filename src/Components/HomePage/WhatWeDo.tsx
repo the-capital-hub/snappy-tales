@@ -15,15 +15,8 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const moul = Moul({
-  weight: ["400"],
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  weight: ["400"],
-  subsets: ["latin"],
-});
+const moul = Moul({ weight: ["400"], subsets: ["latin"] });
+const outfit = Outfit({ weight: ["400"], subsets: ["latin"] });
 
 const cardData = [
   {
@@ -70,243 +63,167 @@ const WhatWeDo = () => {
   const ctaTitleRef = useRef(null);
   const ctaButtonRef = useRef(null);
 
-  useGSAP(
-    () => {
-      // Header title animation
-      gsap.from(headerTitleRef.current, {
+  const handleMouseMove = (e: React.MouseEvent, cardEl: HTMLDivElement) => {
+    const rect = cardEl.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 10; 
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    gsap.to(cardEl, {
+      rotateX: -rotateX,
+      rotateY: rotateY,
+      scale: 1.05,
+      transformPerspective: 500,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseLeave = (cardEl: HTMLDivElement) => {
+    gsap.to(cardEl, {
+      rotateX: 0,
+      rotateY: 0,
+      scale: 1,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  };
+
+  // Scroll animations
+  useGSAP(() => {
+    gsap.from(headerTitleRef.current, {
+      opacity: 0,
+      x: -100,
+      scrollTrigger: {
+        trigger: headerTitleRef.current,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1,
+      },
+    });
+    gsap.from(headerDescRef.current, {
+      opacity: 0,
+      x: -80,
+      scrollTrigger: {
+        trigger: headerDescRef.current,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1.5,
+      },
+    });
+    gsap.from(headerButtonRef.current, {
+      opacity: 0,
+      x: 100,
+      scale: 0.8,
+      scrollTrigger: {
+        trigger: headerButtonRef.current,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 1.5,
+      },
+    });
+
+    cardsRef.current.forEach((card) => {
+      if (!card) return;
+      gsap.from(card, {
         opacity: 0,
-        x: -100,
+        y: 100,
+        rotation: -5,
         scrollTrigger: {
-          trigger: headerTitleRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: 1,
-        },
-      });
-
-      // Header description animation
-      gsap.from(headerDescRef.current, {
-        opacity: 0,
-        x: -80,
-        scrollTrigger: {
-          trigger: headerDescRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: 1.5,
-        },
-      });
-
-      // Header button animation
-      gsap.from(headerButtonRef.current, {
-        opacity: 0,
-        x: 100,
-        scale: 0.8,
-        scrollTrigger: {
-          trigger: headerButtonRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: 1.5,
-        },
-      });
-
-      // SVG animation - triggers when first card is visible
-      gsap.from(svgRef.current, {
-        opacity: 0,
-        scale: 0.5,
-        rotation: -180,
-        scrollTrigger: {
-          trigger: cardsRef.current[0],
-          start: "top 80%",
-          end: "top 50%",
-          scrub: 1.5,
-        },
-      });
-
-      // Cards animations
-      cardsRef.current.forEach((card) => {
-        if (card) {
-          // Card container animation
-          gsap.from(card, {
-            opacity: 0,
-            y: 100,
-            rotation: -5,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              end: "top 55%",
-              scrub: 1.5,
-            },
-          });
-
-          // Card icon animation
-          const icon = card.querySelector(".card-icon");
-          if (icon) {
-            gsap.from(icon, {
-              scale: 0,
-              rotation: 360,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-                end: "top 60%",
-                scrub: 2,
-              },
-            });
-          }
-
-          // Card title animation
-          const title = card.querySelector(".card-title");
-          if (title) {
-            gsap.from(title, {
-              opacity: 0,
-              x: -30,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-                end: "top 60%",
-                scrub: 2,
-              },
-            });
-          }
-
-          // Card description animation
-          const desc = card.querySelector(".card-description");
-          if (desc) {
-            gsap.from(desc, {
-              opacity: 0,
-              y: 20,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                end: "top 55%",
-                scrub: 2,
-              },
-            });
-          }
-
-          // Card button animation
-          const button = card.querySelector(".card-button");
-          if (button) {
-            gsap.from(button, {
-              opacity: 0,
-              scale: 0.5,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                end: "top 55%",
-                scrub: 2.5,
-              },
-            });
-          }
-
-          // Card image animation
-          const img = card.querySelector(".card-image");
-          if (img) {
-            gsap.from(img, {
-              scale: 0.8,
-              opacity: 0.5,
-              scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 2,
-              },
-            });
-          }
-        }
-      });
-
-      // CTA title animation with split text effect
-      gsap.from(ctaTitleRef.current, {
-        opacity: 0,
-        y: 60,
-        scale: 0.9,
-        scrollTrigger: {
-          trigger: ctaTitleRef.current,
+          trigger: card,
           start: "top 85%",
-          end: "top 60%",
+          end: "top 55%",
           scrub: 1.5,
         },
       });
+    });
 
-      // CTA button animation
-      gsap.from(ctaButtonRef.current, {
-        opacity: 0,
-        y: 40,
-        scale: 0.7,
-        scrollTrigger: {
-          trigger: ctaButtonRef.current,
-          start: "top 85%",
-          end: "top 65%",
-          scrub: 2,
-        },
-      });
-    },
-    { scope: containerRef }
-  );
+    gsap.from(ctaTitleRef.current, {
+      opacity: 0,
+      y: 60,
+      scale: 0.9,
+      scrollTrigger: {
+        trigger: ctaTitleRef.current,
+        start: "top 85%",
+        end: "top 60%",
+        scrub: 1.5,
+      },
+    });
+
+    gsap.from(ctaButtonRef.current, {
+      opacity: 0,
+      y: 40,
+      scale: 0.7,
+      scrollTrigger: {
+        trigger: ctaButtonRef.current,
+        start: "top 85%",
+        end: "top 65%",
+        scrub: 2,
+      },
+    });
+  }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="w-full max-w-7xl mx-auto py-12">
-      <div className="flex items-center justify-between mb-12">
-        <div className="flex flex-col gap-4">
-          <h2 ref={headerTitleRef} className={`${moul.className} text-5xl`}>
+    <div ref={containerRef} className="w-full dark:bg-black mx-auto py-8">
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 max-w-7xl mx-auto px-6 mb-12">
+        <div className="flex flex-col gap-4 text-center lg:text-left">
+          <h2
+            ref={headerTitleRef}
+            className={`${moul.className} text-4xl lg:text-5xl text-black dark:text-white`}
+          >
             What We Do
           </h2>
           <p
             ref={headerDescRef}
-            className={`${outfit.className} text-2xl max-w-xl`}
+            className={`${outfit.className} text-lg lg:text-2xl text-gray-700 dark:text-gray-300 max-w-xl mx-auto lg:mx-0`}
           >
             Define, position, and grow your brand with clarity and consistency.
-            We help you create a brand identity that connects with your
-            audience.
+            We help you create a brand identity that connects with your audience.
           </p>
         </div>
-        <div ref={headerButtonRef}>
+        <div ref={headerButtonRef} className="flex justify-center lg:justify-end">
           <Button>Request a Demo</Button>
         </div>
       </div>
 
-      {/* Cards */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 py-7 max-w-7xl mx-auto">
         {cardData.map((card, index) => (
           <div
             key={card.id}
-            ref={(el) => {
-              cardsRef.current[index] = el;
-            }}
-            className="relative bg-white border border-gray-200 rounded-2xl shadow-[6px_6px_0px_rgba(0,0,0,0.8)] p-3 flex flex-col gap-4"
+            ref={(el) => {cardsRef.current[index] = el}}
+            className="relative bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-2xl shadow-[6px_6px_0px_rgba(0,0,0,0.8)] dark:shadow-[6px_6px_0px_rgba(255,255,255,0.2)] p-4 flex flex-col gap-4 transition-transform transform-style-preserve-3d"
+            onMouseMove={(e) => handleMouseMove(e, cardsRef.current[index]!)}
+            onMouseLeave={() => handleMouseLeave(cardsRef.current[index]!)}
           >
-            {/* SVG only on first card */}
             {index === 0 && (
-              <div ref={svgRef} className="absolute -top-9 -right-11 z-10">
+              <div ref={svgRef} className="absolute -top-9 -right-5 z-10">
                 <NiceSvg />
               </div>
             )}
-
-            {/* Icon & Title */}
             <div className="flex items-center gap-2">
               <span className="card-icon text-2xl bg-gradient-to-b from-[#FFDE48] to-[#F4C906] rounded-full p-3">
                 <card.icon size={20} className="text-black" />
               </span>
               <h3
-                className={`${moul.className} card-title text-2xl font-bold`}
+                className={`${moul.className} card-title text-2xl font-bold text-black dark:text-white`}
               >
                 {card.title}
               </h3>
             </div>
-
-            {/* Description */}
             <p
-              className={`${outfit.className} card-description text-gray-700`}
+              className={`${outfit.className} card-description text-gray-700 dark:text-gray-300`}
             >
               {card.description}
             </p>
-
-            {/* Button */}
             <div className="card-button">
               <Button className="w-fit">{card.buttonText}</Button>
             </div>
-
-            {/* Image with tagline */}
             <div className="card-image relative w-full h-48 rounded-lg overflow-hidden">
               <Image
                 src={card.image}
@@ -318,12 +235,14 @@ const WhatWeDo = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-col items-center justify-center my-20 gap-8 max-w-5xl mx-auto">
+
+      {/* CTA */}
+      <div className="flex flex-col items-center justify-center my-20 gap-8 max-w-5xl mx-auto px-4 text-center">
         <p
           ref={ctaTitleRef}
-          className={`${moul.className} text-5xl uppercase text-center`}
+          className={`${moul.className} text-3xl lg:text-5xl uppercase text-black dark:text-white`}
         >
-          Want to see how we can build <br />
+          Want to see how we can build <br className="hidden lg:block" />
           and scale your business?
         </p>
         <div ref={ctaButtonRef}>

@@ -13,7 +13,7 @@ const page = () => {
         smoothWheel: true,
 
       }}>
-    <div>
+    <div className='dark:bg-black bg-white'>
         <Herosection/>
         <Services/>
     </div>
