@@ -1,7 +1,7 @@
-import PramodPic from "../../../public/AboutUs/NewImages/Pramod.png";
-import UpmaPic from "../../../public/AboutUs/NewImages/Upma.png";
-import AmanPic from "../../../public/AboutUs/NewImages/Aman.png";
-import MeghaPic from "../../../public/Aboutus/NewImages/Megha.png"
+import PramodPic from "../../../public/Aboutus/NewImages/Pramod.png";
+import UpmaPic from "../../../public/Aboutus/NewImages/Upma.png";
+import AmanPic from "../../../public/Aboutus/NewImages/Aman.png";
+import MeghaPic from "../../../public/Aboutus/NewImages/Megha.png";
 
 const teamMembers = [
 	{
