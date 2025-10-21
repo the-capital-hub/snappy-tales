@@ -50,7 +50,7 @@ export default function ContactUs() {
         <div className="container mx-auto py-12 px-6 md:px-12">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4 dark:text-white text-black">Contact Us</h1>
-            <p className="dark:text-gray-500 text-gray-6000">
+            <p className="dark:text-gray-500 text-gray-600">
               Our experts will be happy to assist you with your queries
             </p>
           </div>
