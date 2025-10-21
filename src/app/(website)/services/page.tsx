@@ -1,3 +1,4 @@
+import Footer from '@/Components/Common/Footer'
 import Herosection from '@/Components/ServicesComponent/Herosection'
 import Services from '@/Components/ServicesComponent/Services'
 import ReactLenis from 'lenis/react'
@@ -16,6 +17,7 @@ const page = () => {
     <div className='dark:bg-black bg-white'>
         <Herosection/>
         <Services/>
+        <Footer/>
     </div>
     </ReactLenis>
   )

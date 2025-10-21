@@ -4,30 +4,38 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
+    // Detect if device has a fine pointer (i.e., a mouse)
+    const isDesktop = window.matchMedia("(pointer: fine)").matches;
 
-    // Hide the default cursor
+    if (!isDesktop) {
+      // Don't show or run cursor logic on mobile/tablet
+      if (cursorRef.current) cursorRef.current.style.display = "none";
+      document.body.style.cursor = "auto";
+      return;
+    }
+
+    const cursor = cursorRef.current!;
     document.body.style.cursor = "none";
 
-    const moveCursor = (e:MouseEvent) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.2,
-        ease: "power2.out",
-      });
+    // Smooth GSAP movement
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.2, ease: "power2.out" });
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.2, ease: "power2.out" });
+
+    const moveCursor = (e: MouseEvent) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
     };
 
     window.addEventListener("mousemove", moveCursor);
 
-    // Hover effect for clickable elements
+    // Hover animations (only color change, no scale)
     const addHover = () =>
-      gsap.to(cursor, { scale: 1.8, backgroundColor: "#000", duration: 0.3 });
+      gsap.to(cursor, { backgroundColor: "#000", duration: 0.3 });
     const removeHover = () =>
-      gsap.to(cursor, { scale: 1, backgroundColor: "#fff", duration: 0.3 });
+      gsap.to(cursor, { backgroundColor: "#fff", duration: 0.3 });
 
     const hoverables = document.querySelectorAll("a, button, .hover-target");
     hoverables.forEach((el) => {
@@ -48,7 +56,7 @@ const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 w-6 h-6 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference shadow-[0_0_10px_rgba(255,255,255,0.5)]"
     ></div>
   );
 };

@@ -133,7 +133,7 @@ export const Steps = () => {
   ];
 
   return (
-    <div className="relative dark:bg-black py-10 mx-auto">
+    <div className="relative dark:bg-black py-10 mx-auto max-w-7xl">
       {/* Section Header */}
       <div className="flex flex-col justify-center items-center gap-0 max-w-7xl mx-auto">
         <h1
@@ -149,7 +149,7 @@ export const Steps = () => {
       </div>
 
       {/* Desktop Steps (manual, absolute) */}
-      <div className="hidden md:block relative min-h-[220vh]">
+      <div className="hidden md:block relative min-h-[250vh]">
         {/* Step 1 */}
         <div className="absolute left-1/3 top-[10.5rem] step-content-desktop z-50 space-y-5">
           <h4 className={`${moul.className} text-4xl bg-[#F4C906] p-3 inline-flex rounded-xl`}>

@@ -225,7 +225,7 @@ export const Portfolio: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#F1F5C1] dark:bg-[#000] w-full overflow-hidden select-none transition-colors duration-300">
+    <div className="bg-[#F1F5C1] dark:bg-[#F1F5C11A] w-full overflow-hidden select-none transition-colors duration-300">
       <div className="mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto justify-between items-center gap-10 md:gap-0 select-none">
           <Image

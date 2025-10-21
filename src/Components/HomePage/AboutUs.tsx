@@ -24,7 +24,7 @@ const ptOutfit = Outfit({
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col items-center dark:bg-black bg-white justify-center py-4 mt-10 overflow-hidden">
+    <div className="flex flex-col items-center dark:bg-black bg-white justify-center py-4 md:mt-10 overflow-hidden">
       
       {/* Title Section */}
       <div className="about-title flex items-center justify-center">
