@@ -96,9 +96,9 @@ export const Portfolio: React.FC = () => {
                   Capital HUB provides 360&#39; approach on...
                 </p>
               </div>
-              <button class="bg-[#F4C906] text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e5e9b5] transition-colors select-none w-fit">
+              <a href="/services" class="bg-[#F4C906] text-black px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#e5e9b5] transition-colors select-none w-fit">
                 View Case Study
-              </button>
+              </a>
             </div>
           `;
           track.appendChild(slide);
@@ -247,7 +247,7 @@ export const Portfolio: React.FC = () => {
               Some of the Startups we&apos;ve helped grow:
             </p>
             <div className="flex justify-center md:justify-start mb-5">
-              <Button>Request a Demo</Button>
+              <Button href="/services">Request a Demo</Button>
             </div>
           </div>
         </div>

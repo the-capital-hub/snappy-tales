@@ -22,33 +22,19 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Contact form configuration
 
-The contact form on `/contact` sends submissions to the `/api/contact` route, which relays the message with
-[Nodemailer](https://nodemailer.com/about/) using your SMTP credentials. Configure the following environment variables in a
+The contact form on `/contact` sends submissions to the `/api/contact` route, which forwards the message to
+`dev.capitalhub@gmail.com` using the [Resend](https://resend.com) email API. Configure the following environment variables in a
 `.env.local` file before running the project:
 
 ```bash
+RESEND_API_KEY=your_resend_api_key
 CONTACT_FROM_EMAIL="Snappy Tales <no-reply@your-domain.com>"
 # Optional: override the default recipient list
 CONTACT_TO_EMAIL="dev.capitalhub@gmail.com"
-
-# Provide either SMTP_SERVICE or SMTP_HOST/SMTP_PORT
-SMTP_SERVICE=gmail
-# Or
-SMTP_HOST=smtp.your-provider.com
-SMTP_PORT=587
-
-# Authentication (required when SMTP_SERVICE is provided)
-SMTP_USER=your-smtp-username
-SMTP_PASS=your-smtp-password
-
-# Optional: force TLS usage
-SMTP_SECURE=false
 ```
 
-`SMTP_SERVICE` lets Nodemailer load the correct defaults for popular providers such as Gmail. If you prefer to manage the
-connection manually, omit `SMTP_SERVICE` and supply `SMTP_HOST`/`SMTP_PORT` instead. The `CONTACT_TO_EMAIL` value accepts a
-comma-separated list if you need to notify multiple recipients. The form will display a toast confirmation when the message is
-delivered and surfaces any validation or delivery errors returned by the API.
+The `CONTACT_TO_EMAIL` value accepts a comma-separated list if you need to notify multiple recipients. The form will display a
+toast confirmation when the message is delivered and surfaces any validation or delivery errors returned by the API.
 
 ## Learn More
 

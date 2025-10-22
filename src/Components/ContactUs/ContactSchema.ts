@@ -6,8 +6,7 @@ export const contactFormSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   service: z.enum(["fundraising", "webDevelopment"], {
-    required_error: "Please select a service.",
-    invalid_type_error: "Please select a service.",
+    message: "Please select a service.",
   }),
   message: z.string().min(10, "Message is too short"),
 });

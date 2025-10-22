@@ -250,7 +250,7 @@ const Navbar: React.FC = () => {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <div className="nav-item hidden lg:block">
-                <Button>Book A Call</Button>
+                <Button href="/services">Book A Call</Button>
               </div>
 
               {/* Mobile Menu Toggle */}
@@ -351,7 +351,15 @@ const Navbar: React.FC = () => {
                 currentTheme === "dark" ? "border-white/20" : "border-gray-200"
               }`}
             >
-              <Button className="w-full">Book A Call</Button>
+              <Button
+                className="w-full"
+                href="/services"
+                onClick={() => {
+                  setMenuOpen(false);
+                }}
+              >
+                Book A Call
+              </Button>
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@ const cardData = [
     title: "Design",
     description: "Websites, apps, products, and powerful brand identities.",
     buttonText: "Explore More",
+    slug: "branding-ui-ux-design",
     image: img1,
   },
   {
@@ -33,6 +34,7 @@ const cardData = [
     title: "Market",
     description: "SEO, SMM, SEM, content & performance campaigns convert.",
     buttonText: "Explore More",
+    slug: "marketing-growth",
     image: img2,
   },
   {
@@ -41,6 +43,7 @@ const cardData = [
     title: "Build",
     description: "Websites, apps, products, and powerful brand identities.",
     buttonText: "Explore More",
+    slug: "website-app-development",
     image: img3,
   },
   {
@@ -49,6 +52,7 @@ const cardData = [
     title: "Scale",
     description: "GTM strategies, growth marketing, and investor connections.",
     buttonText: "Explore More",
+    slug: "gtm-scaling-strategy",
     image: img4,
   },
 ];
@@ -187,7 +191,7 @@ const WhatWeDo = () => {
           </p>
         </div>
         <div ref={headerButtonRef} className="flex justify-center lg:justify-end">
-          <Button>Request a Demo</Button>
+          <Button href="/services">Request a Demo</Button>
         </div>
       </div>
 
@@ -222,7 +226,9 @@ const WhatWeDo = () => {
               {card.description}
             </p>
             <div className="card-button">
-              <Button className="w-fit">{card.buttonText}</Button>
+              <Button className="w-fit" href={`/services/${card.slug}`}>
+                {card.buttonText}
+              </Button>
             </div>
             <div className="card-image relative w-full h-48 rounded-lg overflow-hidden">
               <Image
@@ -246,7 +252,7 @@ const WhatWeDo = () => {
           and scale your business?
         </p>
         <div ref={ctaButtonRef}>
-          <Button>Free Strategy Consultation</Button>
+          <Button href="/services">Free Strategy Consultation</Button>
         </div>
       </div>
     </div>
