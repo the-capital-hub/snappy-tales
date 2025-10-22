@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     if (error instanceof ZodError) {
-      const message = error.errors
+      const message = error.issues
         .map((issue) => issue.message)
         .join("\n");
 
