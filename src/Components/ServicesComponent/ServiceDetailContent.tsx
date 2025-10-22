@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 import Button from "../ui/Button";
 import type { ServiceDetail } from "@/lib/serviceDetails";
+import { BOOKING_URL } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -335,7 +336,7 @@ const ServiceDetailContent: React.FC<ServiceDetailContentProps> = ({ service }) 
           <p className="max-w-2xl text-base text-black/80 md:text-lg">
             Share your goals, and we’ll craft a sprint that matches your momentum. Product, design, growth, or capital—we’ve got you covered end to end.
           </p>
-          <Link href="/contact" className="inline-flex">
+          <Link href={BOOKING_URL} className="inline-flex">
             <Button className="px-6 py-3 text-base md:px-8 md:py-3.5 md:text-lg">
               Book a discovery call
             </Button>
