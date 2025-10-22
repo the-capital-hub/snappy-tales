@@ -9,7 +9,6 @@ import { Outfit } from "next/font/google";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { ThemeToggle } from "../theme-toggle";
-import { BOOKING_URL } from "@/lib/constants";
 
 const outfit = Outfit({
   weight: ["400", "700"],
@@ -92,12 +91,6 @@ const Navbar: React.FC = () => {
   useEffect(() => setMounted(true), []);
 
   const currentTheme = mounted ? resolvedTheme : "light";
-
-  const handleBookingRedirect = () => {
-    if (typeof window !== "undefined") {
-      window.location.href = BOOKING_URL;
-    }
-  };
 
   useEffect(() => {
     if (!navRef.current) return;
@@ -257,7 +250,7 @@ const Navbar: React.FC = () => {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <div className="nav-item hidden lg:block">
-                <Button onClick={handleBookingRedirect}>Book A Call</Button>
+                <Button href="/services">Book A Call</Button>
               </div>
 
               {/* Mobile Menu Toggle */}
@@ -358,10 +351,15 @@ const Navbar: React.FC = () => {
                 currentTheme === "dark" ? "border-white/20" : "border-gray-200"
               }`}
             >
-              <Button className="w-full" onClick={() => {
-                setMenuOpen(false);
-                handleBookingRedirect();
-              }}>Book A Call</Button>
+              <Button
+                className="w-full"
+                href="/services"
+                onClick={() => {
+                  setMenuOpen(false);
+                }}
+              >
+                Book A Call
+              </Button>
             </div>
           </div>
         </div>

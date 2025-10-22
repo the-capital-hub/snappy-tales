@@ -349,7 +349,7 @@ const Services: React.FC = () => {
         <p className="text-lg text-gray-700 dark:text-gray-300 md:text-2xl">
           Speed + Quality – We execute fast without compromising results.
         </p>
-        <Button>Request a demo</Button>
+        <Button href="/services">Request a demo</Button>
       </div>
 
       <div
