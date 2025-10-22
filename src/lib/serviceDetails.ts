@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { BOOKING_URL } from "./constants";
 
 export interface ServiceOverview {
   description: string;
@@ -49,7 +50,7 @@ export const serviceDetails: ServiceDetail[] = [
       description:
         "From vision to version-one and beyond, we design, build, and scale digital products with the craft of a studio and the velocity of an in-house squad.",
       ctaLabel: "Book a product sprint",
-      ctaHref: "/contact",
+      ctaHref: BOOKING_URL,
       secondaryLabel: "Explore all services",
       secondaryHref: "/services",
     },
@@ -159,7 +160,7 @@ export const serviceDetails: ServiceDetail[] = [
       description:
         "We translate your ambition into visual systems, interactions, and stories that move audiences across every touchpoint.",
       ctaLabel: "Schedule a design review",
-      ctaHref: "/contact",
+      ctaHref: BOOKING_URL,
       secondaryLabel: "Download credentials",
       secondaryHref: "/our-story",
     },
@@ -270,7 +271,7 @@ export const serviceDetails: ServiceDetail[] = [
       description:
         "We blend performance, product marketing, and storytelling into revenue-focused experiments that keep compounding.",
       ctaLabel: "Launch a growth sprint",
-      ctaHref: "/contact",
+      ctaHref: BOOKING_URL,
       secondaryLabel: "See our approach",
       secondaryHref: "/our-story",
     },
@@ -380,7 +381,7 @@ export const serviceDetails: ServiceDetail[] = [
       description:
         "We map, test, and refine go-to-market motions that align product, marketing, and revenue teams around the same scoreboard.",
       ctaLabel: "Co-create the roadmap",
-      ctaHref: "/contact",
+      ctaHref: BOOKING_URL,
       secondaryLabel: "Meet the strategists",
       secondaryHref: "/our-story",
     },
@@ -489,7 +490,7 @@ export const serviceDetails: ServiceDetail[] = [
       description:
         "From narrative crafting to warm introductions, we coach founders through every investor touchpoint with confidence.",
       ctaLabel: "Plan your raise",
-      ctaHref: "/contact",
+      ctaHref: BOOKING_URL,
       secondaryLabel: "Get founder resources",
       secondaryHref: "/our-story",
     },

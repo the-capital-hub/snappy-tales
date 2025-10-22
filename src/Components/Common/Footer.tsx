@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { HardDrive } from "lucide-react";
 import gsap from "gsap";
+import { BOOKING_URL } from "@/lib/constants";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -161,16 +162,19 @@ export default function Footer() {
             <div key={idx} className="min-w-[120px]">
               <h3 className="font-semibold text-sm mb-3">{section.title}</h3>
               <ul className="space-y-2 text-gray-400 dark:text-gray-500">
-                {section.links.map((link) => (
-                  <li key={link}>
-                    <Link
-                      href="#"
-                      className="hover:text-white dark:hover:text-black transition-colors"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                ))}
+                {section.links.map((link) => {
+                  const isBookingLink = link === "Book A Slot";
+                  return (
+                    <li key={link}>
+                      <Link
+                        href={isBookingLink ? BOOKING_URL : "#"}
+                        className="hover:text-white dark:hover:text-black transition-colors"
+                      >
+                        {link}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
