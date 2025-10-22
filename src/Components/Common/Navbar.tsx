@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type CSSProperties } from "react";
 import Button from "../ui/Button";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
@@ -85,6 +85,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -126,7 +127,16 @@ const Navbar: React.FC = () => {
 
   // Scroll effect
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+
+      const maxScroll = 300;
+      const progress = Math.min(scrollY / maxScroll, 1);
+      setScrollProgress(progress);
+    };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -190,11 +200,22 @@ const Navbar: React.FC = () => {
 
   const navBg = isScrolled
     ? currentTheme === "dark"
-      ? "md:bg-[#FFFFFF1A] bg-black md:border-white border-1"
-      : "md:bg-white/80"
+      ? "md:border-white/40 border-white/20"
+      : "md:border-black/10 border-transparent"
     : currentTheme === "dark"
-    ? "md:bg-[#FFFFFF1A] bg-black border-white"
-    : "md:bg-white bg-black border-transparent";
+    ? "border-white/20"
+    : "border-transparent md:border-black/5";
+
+  const minOpacity = currentTheme === "dark" ? 0.2 : 0.4;
+  const maxOpacity = currentTheme === "dark" ? 0.9 : 0.98;
+  const easedProgress = Math.min(Math.max(scrollProgress, 0), 1);
+  const opacity = minOpacity + (maxOpacity - minOpacity) * easedProgress;
+  const baseColor = currentTheme === "dark" ? "17, 17, 17" : "255, 255, 255";
+  const navStyle: CSSProperties = {
+    backgroundColor: `rgba(${baseColor}, ${opacity})`,
+    backdropFilter: "blur(18px)",
+    WebkitBackdropFilter: "blur(18px)",
+  };
 
   const linkActive =
     "text-black bg-yellow-300/40 dark:text-black dark:bg-white";
@@ -207,11 +228,12 @@ const Navbar: React.FC = () => {
         ref={navRef}
         className={`md:fixed max-w-7xl px-6 py-3 w-full mx-auto left-0 right-0 z-50 transition-all duration-300 ${
           outfit.className
-        } ${navBg} ${
+        } border ${navBg} ${
           isScrolled
             ? "md:rounded-full transition-all duration-300 top-4"
             : "rounded-xl"
         } transition-all duration-300`}
+        style={navStyle}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
