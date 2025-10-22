@@ -18,11 +18,11 @@ const contactInfo: ContactInfo[] = [
 		text: "+1012 3456 789",
 		href: "tel:+10123456789",
 	},
-	{
-		icon: <Mail size={20} />,
-		text: "demo@gmail.com",
-		href: "mailto:demo@gmail.com",
-	},
+        {
+                icon: <Mail size={20} />,
+                text: "dev.capitalhub@gmail.com",
+                href: "mailto:dev.capitalhub@gmail.com",
+        },
 	{
 		icon: <MapPin size={20} />,
 		text: "132 Dartmouth Street Boston, Massachusetts 02156 United States",

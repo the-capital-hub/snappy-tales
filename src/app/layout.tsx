@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/Components/Common/Navbar";
 import { ThemeProvider } from "next-themes";
 import CustomCursor from "@/Components/CustomCursor";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -43,7 +44,8 @@ export default function RootLayout({
             </div>
         <Navbar/>
         {children}
- 
+        <Toaster position="top-center" />
+
         </ThemeProvider>
       </body>
     </html>
