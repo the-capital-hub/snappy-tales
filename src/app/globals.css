@@ -190,3 +190,48 @@ body {
   background-color: #111111; /* fallback */
 }
 
+
+@keyframes orbFloatSlow {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(20px, -30px, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes orbFloatFast {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-25px, 25px, 0) scale(0.95);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-orb-slow {
+  animation: orbFloatSlow 18s ease-in-out infinite;
+}
+
+.animate-orb-fast {
+  animation: orbFloatFast 22s ease-in-out infinite;
+}
+
+@keyframes marqueeSlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marqueeSlow 28s linear infinite;
+}
