@@ -203,6 +203,11 @@ const Services: React.FC = () => {
     }
   }, []);
 
+    const handleCalendly = () => {
+    window.open("https://calendly.com/capitalhub-discovery/meeting-with-ceo", "_blank");
+  }
+
+
   return (
     <div
       className={`${mont.className} min-h-screen bg-gray-50 p-6 transition-colors duration-300 dark:bg-black md:p-12`}
@@ -276,9 +281,9 @@ const Services: React.FC = () => {
               </div>
             </div>
 
-            {hoveredService === service.id && (
+            {/* {hoveredService === service.id && (
               <div
-                className="pointer-events-none absolute h-10 w-10 rounded-full bg-gradient-to-b from-[#FFDE48] to-[#F4C906] transition-opacity duration-200 md:h-12 md:w-12"
+                className="pointer-events-none absolute h-18 w-18 rounded-full bg-gradient-to-b from-[#FFDE48] to-[#F4C906] transition-opacity duration-200 md:h-12 md:w-12"
                 style={{
                   left: `${cursorPosition.x - 20}px`,
                   top: `${cursorPosition.y - 20}px`,
@@ -298,7 +303,7 @@ const Services: React.FC = () => {
                   />
                 </svg>
               </div>
-            )}
+            )} */}
           </div>
         ))}
       </div>
@@ -349,7 +354,7 @@ const Services: React.FC = () => {
         <p className="text-lg text-gray-700 dark:text-gray-300 md:text-2xl">
           Speed + Quality – We execute fast without compromising results.
         </p>
-        <Button href="/services">Request a demo</Button>
+        <Button onClick={handleCalendly}>Request a demo</Button>
       </div>
 
       <div

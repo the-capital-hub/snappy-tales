@@ -224,6 +224,10 @@ export const Portfolio: React.FC = () => {
     };
   }, []);
 
+   const handleCalendly = () => {
+    window.open("https://calendly.com/capitalhub-discovery/meeting-with-ceo", "_blank");
+  }
+
   return (
     <div className="bg-[#F1F5C1] dark:bg-[#F1F5C11A] w-full overflow-hidden select-none transition-colors duration-300">
       <div className="mx-auto px-4 py-12">
@@ -247,7 +251,7 @@ export const Portfolio: React.FC = () => {
               Some of the Startups we&apos;ve helped grow:
             </p>
             <div className="flex justify-center md:justify-start mb-5">
-              <Button href="/services">Request a Demo</Button>
+              <Button onClick={handleCalendly}>Request a Demo</Button>
             </div>
           </div>
         </div>

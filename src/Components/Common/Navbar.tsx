@@ -189,6 +189,12 @@ const Navbar: React.FC = () => {
     };
   }, [menuOpen]);
 
+  const handleCalendly = () => {
+    window.open("https://calendly.com/capitalhub-discovery/meeting-with-ceo", "_blank");
+     setMenuOpen(false);
+  }
+
+
   const links = [
     { label: "Home", href: "/" },
     { label: "Our Story", href: "/our-story" },
@@ -272,7 +278,7 @@ const Navbar: React.FC = () => {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               <div className="nav-item hidden lg:block">
-                <Button href="/services">Book A Call</Button>
+                <Button onClick={handleCalendly}>Book A Call</Button>
               </div>
 
               {/* Mobile Menu Toggle */}
@@ -375,10 +381,9 @@ const Navbar: React.FC = () => {
             >
               <Button
                 className="w-full"
-                href="/services"
-                onClick={() => {
-                  setMenuOpen(false);
-                }}
+                // href="/services"
+                onClick={
+                  handleCalendly}
               >
                 Book A Call
               </Button>

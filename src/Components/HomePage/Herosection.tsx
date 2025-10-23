@@ -105,6 +105,13 @@ const Herosection = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleCalendly = () => {
+    window.open(
+      "https://calendly.com/capitalhub-discovery/meeting-with-ceo",
+      "_blank"
+    );
+  };
+
   return (
     <div
       ref={containerRef}
@@ -204,8 +211,11 @@ const Herosection = () => {
           </p>
 
           {/* Button */}
-          <div ref={buttonRef} className="relative top-6 md:top-8 left-0 md:left-32 lg:left-[13.5rem] mt-4 lg:mt-0">
-            <Button href="/services">Request a Demo</Button>
+          <div
+            ref={buttonRef}
+            className="relative top-6 md:top-8 left-0 md:left-32 lg:left-[13.5rem] mt-4 lg:mt-0"
+          >
+            <Button onClick={handleCalendly}>Request a Demo</Button>
           </div>
         </div>
       </div>
