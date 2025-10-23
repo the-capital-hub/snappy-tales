@@ -38,7 +38,7 @@ body {
 .scroll-logos {
   display: flex;
   gap: 4rem; /* spacing between logos */
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 20s linear infinite;
 }
 /* Light mode default */
 .btn-cls {

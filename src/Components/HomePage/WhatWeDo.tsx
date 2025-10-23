@@ -74,7 +74,7 @@ const WhatWeDo = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * 10; 
+    const rotateX = ((y - centerY) / centerY) * 10;
     const rotateY = ((x - centerX) / centerX) * 10;
 
     gsap.to(cardEl, {
@@ -98,78 +98,88 @@ const WhatWeDo = () => {
   };
 
   // Scroll animations
-  useGSAP(() => {
-    gsap.from(headerTitleRef.current, {
-      opacity: 0,
-      x: -100,
-      scrollTrigger: {
-        trigger: headerTitleRef.current,
-        start: "top 80%",
-        end: "top 50%",
-        scrub: 1,
-      },
-    });
-    gsap.from(headerDescRef.current, {
-      opacity: 0,
-      x: -80,
-      scrollTrigger: {
-        trigger: headerDescRef.current,
-        start: "top 80%",
-        end: "top 50%",
-        scrub: 1.5,
-      },
-    });
-    gsap.from(headerButtonRef.current, {
-      opacity: 0,
-      x: 100,
-      scale: 0.8,
-      scrollTrigger: {
-        trigger: headerButtonRef.current,
-        start: "top 80%",
-        end: "top 50%",
-        scrub: 1.5,
-      },
-    });
-
-    cardsRef.current.forEach((card) => {
-      if (!card) return;
-      gsap.from(card, {
+  useGSAP(
+    () => {
+      gsap.from(headerTitleRef.current, {
         opacity: 0,
-        y: 100,
-        rotation: -5,
+        x: -100,
         scrollTrigger: {
-          trigger: card,
-          start: "top 85%",
-          end: "top 55%",
+          trigger: headerTitleRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: 1,
+        },
+      });
+      gsap.from(headerDescRef.current, {
+        opacity: 0,
+        x: -80,
+        scrollTrigger: {
+          trigger: headerDescRef.current,
+          start: "top 80%",
+          end: "top 50%",
           scrub: 1.5,
         },
       });
-    });
+      gsap.from(headerButtonRef.current, {
+        opacity: 0,
+        x: 100,
+        scale: 0.8,
+        scrollTrigger: {
+          trigger: headerButtonRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: 1.5,
+        },
+      });
 
-    gsap.from(ctaTitleRef.current, {
-      opacity: 0,
-      y: 60,
-      scale: 0.9,
-      scrollTrigger: {
-        trigger: ctaTitleRef.current,
-        start: "top 85%",
-        end: "top 60%",
-        scrub: 1.5,
-      },
-    });
+      cardsRef.current.forEach((card) => {
+        if (!card) return;
+        gsap.from(card, {
+          opacity: 0,
+          y: 100,
+          rotation: -5,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "top 55%",
+            scrub: 1.5,
+          },
+        });
+      });
 
-    gsap.from(ctaButtonRef.current, {
-      opacity: 0,
-      y: 40,
-      scale: 0.7,
-      scrollTrigger: {
-        trigger: ctaButtonRef.current,
-        start: "top 85%",
-        end: "top 65%",
-        scrub: 2,
-      },
-    });
-  }, { scope: containerRef });
+      gsap.from(ctaTitleRef.current, {
+        opacity: 0,
+        y: 60,
+        scale: 0.9,
+        scrollTrigger: {
+          trigger: ctaTitleRef.current,
+          start: "top 85%",
+          end: "top 60%",
+          scrub: 1.5,
+        },
+      });
+
+      gsap.from(ctaButtonRef.current, {
+        opacity: 0,
+        y: 40,
+        scale: 0.7,
+        scrollTrigger: {
+          trigger: ctaButtonRef.current,
+          start: "top 85%",
+          end: "top 65%",
+          scrub: 2,
+        },
+      });
+    },
+    { scope: containerRef }
+  );
+
+  const handleCalendly = () => {
+    window.open(
+      "https://calendly.com/capitalhub-discovery/meeting-with-ceo",
+      "_blank"
+    );
+  };
 
   return (
     <div ref={containerRef} className="w-full dark:bg-black mx-auto py-8">
@@ -187,11 +197,15 @@ const WhatWeDo = () => {
             className={`${outfit.className} text-lg lg:text-2xl text-gray-700 dark:text-gray-300 max-w-xl mx-auto lg:mx-0`}
           >
             Define, position, and grow your brand with clarity and consistency.
-            We help you create a brand identity that connects with your audience.
+            We help you create a brand identity that connects with your
+            audience.
           </p>
         </div>
-        <div ref={headerButtonRef} className="flex justify-center lg:justify-end">
-          <Button href="/services">Request a Demo</Button>
+        <div
+          ref={headerButtonRef}
+          className="flex justify-center lg:justify-end"
+        >
+          <Button onClick={handleCalendly}>Request a Demo</Button>
         </div>
       </div>
 
@@ -200,7 +214,9 @@ const WhatWeDo = () => {
         {cardData.map((card, index) => (
           <div
             key={card.id}
-            ref={(el) => {cardsRef.current[index] = el}}
+            ref={(el) => {
+              cardsRef.current[index] = el;
+            }}
             className="relative bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 rounded-2xl shadow-[6px_6px_0px_rgba(0,0,0,0.8)] dark:shadow-[6px_6px_0px_rgba(255,255,255,0.2)] p-4 flex flex-col gap-4 transition-transform transform-style-preserve-3d"
             onMouseMove={(e) => handleMouseMove(e, cardsRef.current[index]!)}
             onMouseLeave={() => handleMouseLeave(cardsRef.current[index]!)}
@@ -252,7 +268,7 @@ const WhatWeDo = () => {
           and scale your business?
         </p>
         <div ref={ctaButtonRef}>
-          <Button href="/services">Free Strategy Consultation</Button>
+          <Button onClick={handleCalendly}>Free Strategy Consultation</Button>
         </div>
       </div>
     </div>

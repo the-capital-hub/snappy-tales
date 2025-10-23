@@ -1,12 +1,12 @@
 import { Moul, Outfit } from "next/font/google";
 import Image from "next/image";
 
-import Frame from "@/../public/Frame.png";
-import Logo8 from "@/../public/logo-8.png";
-import Logo27 from "@/../public/logo-27.png";
-import Logo30 from "@/../public/logo-30.png";
-import Logo53 from "@/../public/logo-53.png";
-import Logo77 from "@/../public/logo-77.png";
+import Frame from "../../../public/portfolio-logo/Maids_Express_logo_1_xnlvcu.svg";
+import Logo8 from "../../../public/portfolio-logo/boycott.webp";
+import Logo27 from "../../../public/portfolio-logo/capitalhub.png";
+import Logo30 from "../../../public/portfolio-logo/ladwa.png";
+import Logo53 from "../../../public/portfolio-logo/medibank.webp";
+import Logo77 from "../../../public/portfolio-logo/p.webp";
 
 const logos = [Frame, Logo8, Logo27, Logo30, Logo53, Logo77, Frame, Logo8, Logo27, Logo30, Logo53, Logo77];
 
@@ -55,7 +55,7 @@ const AboutUs = () => {
               key={idx}
               src={src}
               alt={`logo-${idx}`}
-              width={250}
+              width={120}
               height={40}
               className="object-contain filter dark:brightness-75"
             />

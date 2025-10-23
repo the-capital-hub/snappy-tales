@@ -134,7 +134,7 @@ export default function Footer() {
         >
           <div className="col-span-2 sm:col-span-1">
             <h3 className="font-bold text-lg mb-4 uppercase">Snappy tales</h3>
-            <p className="text-gray-500 uppercase font-semibold  dark:text-gray-400">
+            <p className="text-gray-500 uppercase font-semibold dark:text-gray-400">
               Save Smart & Achieve More
             </p>
           </div>
@@ -144,37 +144,49 @@ export default function Footer() {
             { title: "Company", links: ["About", "Careers", "Book A Slot"] },
             {
               title: "Services",
-              links: ["Website & App development", "Branding & UI/UX design", "Marketing & Growth", "GTM & Scaling", "Accelrator Support & Investor Connect"],
+              links: [
+                { name: "Website & App development", href: "/services/web-app-development" },
+                { name: "Branding & UI/UX design", href: "/services/branding-ui-ux-design" },
+                { name: "Marketing & Growth", href: "/services/marketing-growth" },
+                { name: "GTM & Scaling", href: "/services/gtm-scaling" },
+                { name: "Accelerator Support & Investor Connect", href: "/services/accelerator-investor-connect" },
+              ],
             },
-            {
-              title: "Community",
-              links: ["Host a meetup", "Join"],
-            },
-            {
-              title: "Support",
-              links: ["Help", "FAQ", "Contact"],
-            },
-            {
-              title: "Legal",
-              links: ["Privacy Policy", "Terms of Service"],
-            },
+            { title: "Community", links: ["Host a meetup", "Join"] },
+            { title: "Support", links: ["Help", "FAQ", {name:"Contact", href:"/contact"}] },
+            { title: "Legal", links: ["Privacy Policy", "Terms of Service"] },
           ].map((section, idx) => (
             <div key={idx} className="min-w-[120px]">
               <h3 className="font-semibold text-sm mb-3">{section.title}</h3>
               <ul className="space-y-2 text-gray-400 dark:text-gray-500">
-                {section.links.map((link) => {
-                  const isBookingLink = link === "Book A Slot";
-                  return (
-                    <li key={link}>
-                      <Link
-                        href={isBookingLink ? BOOKING_URL : "#"}
-                        className="hover:text-white dark:hover:text-black transition-colors"
-                      >
-                        {link}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {Array.isArray(section.links) &&
+                  section.links.map((link) => {
+                    if (typeof link === "string") {
+                      const isBookingLink = link === "Book A Slot";
+                      return (
+                        <li key={link}>
+                          <Link
+                            href={isBookingLink ? BOOKING_URL : "#"}
+                            className="hover:text-white dark:hover:text-black transition-colors"
+                          >
+                            {link}
+                          </Link>
+                        </li>
+                      );
+                    } else {
+                      // handle service links with href
+                      return (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            className="hover:text-white dark:hover:text-black transition-colors"
+                          >
+                            {link.name}
+                          </Link>
+                        </li>
+                      );
+                    }
+                  })}
               </ul>
             </div>
           ))}

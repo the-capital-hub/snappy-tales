@@ -326,7 +326,7 @@ const ServiceDetailContent: React.FC<ServiceDetailContentProps> = ({ service }) 
       )}
 
       <section className="px-6 pb-24 md:px-12">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-3xl border border-white/10 bg-[#F4C906]/15 p-10 text-center backdrop-blur-xl md:p-14">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-3xl border border-white/10 bg-[#F4C906]/80 p-10 text-center backdrop-blur-xl md:p-14">
           <p className="text-sm uppercase tracking-[0.4em] text-black/70">
             Let’s build your next chapter
           </p>
