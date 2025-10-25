@@ -198,6 +198,7 @@ const Navbar: React.FC = () => {
   const links = [
     { label: "Home", href: "/" },
     { label: "Our Story", href: "/our-story" },
+    // { label: "Blogs", href: "/blog" },
     { label: "Services", href: "/services", hasDropdown: true },
     { label: "Contact Us", href: "/contact" },
   ];

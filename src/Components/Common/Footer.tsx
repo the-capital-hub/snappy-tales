@@ -145,10 +145,10 @@ export default function Footer() {
             {
               title: "Services",
               links: [
-                { name: "Website & App development", href: "/services/web-app-development" },
+                { name: "Website & App development", href: "/services/website-app-development" },
                 { name: "Branding & UI/UX design", href: "/services/branding-ui-ux-design" },
                 { name: "Marketing & Growth", href: "/services/marketing-growth" },
-                { name: "GTM & Scaling", href: "/services/gtm-scaling" },
+                { name: "GTM & Scaling", href: "/services/gtm-scaling-strategy" },
                 { name: "Accelerator Support & Investor Connect", href: "/services/accelerator-investor-connect" },
               ],
             },
