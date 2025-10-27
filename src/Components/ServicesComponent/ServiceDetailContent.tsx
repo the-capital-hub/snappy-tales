@@ -316,7 +316,7 @@ const ServiceDetailContent: React.FC<ServiceDetailContentProps> = ({ service }) 
               Founder stories
             </p>
             <blockquote className="reveal-up mt-6 text-2xl font-medium leading-relaxed text-gray-900 dark:text-white md:text-3xl">
-              "{service.testimonial.quote}"
+              {service.testimonial.quote}
             </blockquote>
             <p className="reveal-up mt-6 text-sm font-medium uppercase tracking-[0.3em] text-gray-600 dark:text-white/70">
               {service.testimonial.author} · {service.testimonial.role}
@@ -328,13 +328,13 @@ const ServiceDetailContent: React.FC<ServiceDetailContentProps> = ({ service }) 
       <section className="px-6 pb-24 md:px-12">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 rounded-3xl border border-[#F4C906] bg-[#F4C906] p-10 text-center backdrop-blur-xl dark:border-white/10 dark:bg-[#F4C906]/80 md:p-14">
           <p className="text-sm uppercase tracking-[0.4em] text-black/60 dark:text-black/90">
-            Let's build your next chapter
+            Let&apos;s build your next chapter
           </p>
           <h2 className="text-3xl font-semibold text-black md:text-5xl">
             Ready to co-create something legendary?
           </h2>
           <p className="max-w-2xl text-base text-black/90 dark:text-black/80 md:text-lg">
-            Share your goals, and we'll craft a sprint that matches your momentum. Product, design, growth, or capital—we've got you covered end to end.
+            Share your goals, and we&apos;ll craft a sprint that matches your momentum. Product, design, growth, or capital—we&apos;ve got you covered end to end.
           </p>
           <Link href={BOOKING_URL} className="inline-flex">
             <Button className="px-6 py-3 text-base md:px-8 md:py-3.5 md:text-lg">
