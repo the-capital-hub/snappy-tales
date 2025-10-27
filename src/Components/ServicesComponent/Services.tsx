@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useEffect, useRef } from "react";
 import { Smartphone } from "lucide-react";
 import MiddleLogo from "@/svgs/Herosection/MiddleLogo";
 import orange from "../../../public/s-icon.png";
@@ -28,8 +28,8 @@ interface ServiceOverviewCard {
 }
 
 const Services: React.FC = () => {
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  // const [hoveredService, setHoveredService] = useState<number | null>(null);
+  // const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const servicesRef = useRef<(HTMLDivElement | null)[]>([]);
   const logosRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -43,16 +43,16 @@ const Services: React.FC = () => {
     slug: service.slug,
   }));
 
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
-    serviceId: number
-  ) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setCursorPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    setHoveredService(serviceId);
-  };
+  // const handleMouseMove = (
+  //   e: React.MouseEvent<HTMLDivElement>,
+  //   serviceId: number
+  // ) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   setCursorPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  //   setHoveredService(serviceId);
+  // };
 
-  const handleMouseLeave = () => setHoveredService(null);
+  // const handleMouseLeave = () => setHoveredService(null);
 
   useEffect(() => {
     servicesRef.current.forEach((el) => {
@@ -220,8 +220,8 @@ const Services: React.FC = () => {
               servicesRef.current[index] = el;
             }}
             className="group relative cursor-pointer overflow-hidden rounded-2xl border border-black/5 bg-white/90 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/5 dark:bg-white/5"
-            onMouseMove={(e) => handleMouseMove(e, service.id)}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={(e) => handleMouseMove(e, service.id)}
+            // onMouseLeave={handleMouseLeave}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#F4C906]/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="relative flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
