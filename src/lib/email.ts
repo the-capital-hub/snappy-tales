@@ -11,7 +11,7 @@ const EMAIL_SERVICE_MISCONFIGURED_MESSAGE =
   "Email service is not configured. Please contact the administrator.";
 
 function getConfiguredRecipients(): string[] {
-  const to = process.env.CONTACT_TO_EMAIL ?? "dev.capitalhub@gmail.com";
+  const to = process.env.CONTACT_TO_EMAIL ?? "hello@snappytails.com";
 
   return to
     .split(",")

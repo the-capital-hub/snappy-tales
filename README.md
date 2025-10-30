@@ -23,14 +23,14 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ## Contact form configuration
 
 The contact form on `/contact` sends submissions to the `/api/contact` route, which forwards the message to
-`dev.capitalhub@gmail.com` using the [Resend](https://resend.com) email API. Configure the following environment variables in a
+`hello@snappytails.com` using the [Resend](https://resend.com) email API. Configure the following environment variables in a
 `.env.local` file before running the project:
 
 ```bash
 RESEND_API_KEY=your_resend_api_key
 CONTACT_FROM_EMAIL="Snappy Tales <no-reply@your-domain.com>"
 # Optional: override the default recipient list
-CONTACT_TO_EMAIL="dev.capitalhub@gmail.com"
+CONTACT_TO_EMAIL="hello@snappytails.com"
 ```
 
 The `CONTACT_TO_EMAIL` value accepts a comma-separated list if you need to notify multiple recipients. The form will display a
