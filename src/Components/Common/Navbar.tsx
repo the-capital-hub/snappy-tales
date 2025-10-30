@@ -52,29 +52,13 @@ const Logo: React.FC = () => {
 
   return (
     <div>
-      <svg
-        ref={svgRef}
-        width="28"
-        height="29"
-        viewBox="0 0 28 29"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g>
-          <path
-            d="M2 8.18421C2 4.46355 5.01619 1.44737 8.73684 1.44737H26V2.28947C26 6.01013 22.9838 9.02632 19.2632 9.02632H2V8.18421Z"
-            fill="#F4C906"
-          />
-          <path
-            d="M2 11.5526C2 15.2733 5.01619 18.2895 8.73684 18.2895H26V17.4474C26 13.7267 22.9838 10.7105 19.2632 10.7105H2V11.5526Z"
-            fill={currentTheme === "dark" ? "#ffffff" : "#000000"}
-          />
-          <path
-            d="M2 23.3421C2 21.4818 3.50809 19.9737 5.36842 19.9737H26V20.8158C26 24.5364 22.9838 27.5526 19.2632 27.5526H2V23.3421Z"
-            fill="#F4C906"
-          />
-        </g>
-      </svg>
+      <img
+        src="/st-logo.png"
+        alt="Snappy Tales Logo"
+        width={180}
+        height={180}
+        className="object-contain"
+      />
     </div>
   );
 };
@@ -250,13 +234,13 @@ const Navbar: React.FC = () => {
               className="nav-item flex items-center gap-2 text-xl md:text-2xl font-bold uppercase flex-shrink-0"
             >
               <Logo />
-              <h1
+              {/* <h1
                 className={
                   currentTheme === "dark" ? "text-white" : "text-black"
                 }
               >
                 Snappy Tales
-              </h1>
+              </h1> */}
             </Link>
 
             {/* Desktop Nav Links */}

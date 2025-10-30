@@ -25,8 +25,8 @@ const contactInfo: ContactInfo[] = [
         },
         {
                 icon: <MapPin size={20} />,
-                text: "91 SPringboard JP Nagar",
-                href: "https://maps.google.com/?q=91+SPringboard+JP+Nagar",
+                text: "91Springboard, Bannerghatta Rd, Dollars Colony, Phase 4, J. P. Nagar, Bengaluru, Karnataka 560078",
+                href: "https://share.google/gJP0af6YTmeulQWab",
         },
 ];
 
