@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Twitter, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Linkedin } from "lucide-react";
 import { ReactNode } from "react";
 
 interface ContactInfo {
@@ -15,30 +15,30 @@ interface SocialLink {
 const contactInfo: ContactInfo[] = [
         {
                 icon: <Phone size={20} />,
-                text: "+91 6366255319",
-                href: "tel:+916366255319",
+                text: "+91 7026020151",
+                href: "tel:+917026020151",
         },
         {
                 icon: <Mail size={20} />,
-                text: "investments@thecapitalhub.in",
-                href: "mailto:investments@thecapitalhub.in",
+                text: "hello@snappytails.com",
+                href: "mailto:hello@snappytails.com",
         },
         {
                 icon: <MapPin size={20} />,
-                text: "The Capital Hub, 7th block, Jayanagar, Bengaluru - 560070",
-                href: "https://maps.google.com/?q=The+Capital+Hub,+7th+block,+Jayanagar,+Bengaluru+-+560070",
+                text: "91 SPringboard JP Nagar",
+                href: "https://maps.google.com/?q=91+SPringboard+JP+Nagar",
         },
 ];
 
 const socialLinks: SocialLink[] = [
-	{
-		icon: <Twitter size={20} />,
-		href: "https://twitter.com/",
-	},
-	{
-		icon: <Instagram size={20} />,
-		href: "https://www.instagram.com/",
-	},
+        {
+                icon: <Instagram size={20} />,
+                href: "https://www.instagram.com/snappy.tales_official/",
+        },
+        {
+                icon: <Linkedin size={20} />,
+                href: "https://www.linkedin.com/company/snappy-tales-official/",
+        },
 ];
 
 export { contactInfo, socialLinks };
