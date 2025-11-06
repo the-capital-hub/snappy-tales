@@ -33,17 +33,17 @@ const testimonials: Testimonial[] = [
   {
     name: "Mike Torello",
     role: "CEO of Initech",
-    text: "I like getting the SMS & knowing the job's done. I often refer to it as 'hope you get a ping today!' because my product.",
+    text: "Our website redesign by Snappy Tales completely transformed our digital presence. The development team delivered a responsive and lightning-fast experience that boosted user engagement across all devices.",
   },
   {
     name: "Richards Hawkins",
     role: "Marketing Manager of Upnow",
-    text: "We've successfully sold digital products and are happy with the results. Looking forward to using it again soon.",
+    text: "Their marketing integration and analytics setup helped us optimize conversion funnels effortlessly. From SEO to performance tracking, everything was built with growth in mind.",
   },
   {
     name: "Thomas Magnum",
     role: "Barellon NSW",
-    text: "Design Monks offers producers a cost-effective selling tool. Having the ability to post prices you want on an exchange is visible.",
+    text: "The UI/UX work was exceptional — intuitive, visually stunning, and user-focused. Snappy Tales process combines creativity with usability, ensuring every interface feels natural and impactful.",
   },
 ];
 

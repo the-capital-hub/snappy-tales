@@ -129,7 +129,7 @@ export default function ContactForm() {
         {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
       </div>
 
-      <div className="md:col-span-2">
+      {/* <div className="md:col-span-2">
         <label className="block text-sm text-gray-400 dark:text-gray-800 mb-3">
           Choose One
         </label>
@@ -156,7 +156,7 @@ export default function ContactForm() {
         {errors.service && (
           <p className="text-red-500">{errors.service.message}</p>
         )}
-      </div>
+      </div> */}
 
       <div className="md:col-span-2">
         <label
