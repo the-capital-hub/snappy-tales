@@ -31,18 +31,18 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Mike Torello",
-    role: "CEO of Initech",
+    name: "Suresh",
+    role: "CEO of OrgOrbit",
     text: "Our website redesign by Snappy Tales completely transformed our digital presence. The development team delivered a responsive and lightning-fast experience that boosted user engagement across all devices.",
   },
   {
-    name: "Richards Hawkins",
-    role: "Marketing Manager of Upnow",
+    name: "Adi Vangaveti",
+    role: "CEO of Medibank",
     text: "Their marketing integration and analytics setup helped us optimize conversion funnels effortlessly. From SEO to performance tracking, everything was built with growth in mind.",
   },
   {
-    name: "Thomas Magnum",
-    role: "Barellon NSW",
+    name: "Sunil Ladwa",
+    role: "CEO of LADWA Group",
     text: "The UI/UX work was exceptional — intuitive, visually stunning, and user-focused. Snappy Tales process combines creativity with usability, ensuring every interface feels natural and impactful.",
   },
 ];
