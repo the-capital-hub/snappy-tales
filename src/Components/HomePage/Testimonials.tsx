@@ -156,12 +156,7 @@ const TestimonialCards: React.FC = () => {
               <p className="text-sm md:text-base mb-4 md:mb-6">{item.text}</p>
 
               <div className="flex gap-2 items-center">
-                <Image
-                  src={img}
-                  alt="user image"
-                  width={40}
-                  className="object-cover rounded-full h-10 w-10"
-                />
+                
                 <div className="flex flex-col">
                   <h4 className="font-semibold text-sm md:text-base">{item.name}</h4>
                   <p className="text-xs md:text-sm text-gray-400 dark:text-gray-500">{item.role}</p>
